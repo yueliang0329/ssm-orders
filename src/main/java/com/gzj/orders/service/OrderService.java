@@ -22,6 +22,7 @@ public class OrderService {
 	public List<Order> selectByUser(int orderId)
 	{
 		System.out.println("right......");
+		System.out.println("left......");
 		return orderMapper.selectByUser(orderId);
 	}
 	  
