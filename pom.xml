@@ -120,13 +120,6 @@
 			<version>4.3.7.RELEASE</version>
 		</dependency>
 	
-	<!--Spring-test -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>4.3.7.RELEASE</version>
-		</dependency>
 	
 <!-- alipay支付宝 sdk -->
 <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
