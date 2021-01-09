@@ -15,10 +15,10 @@ public class UserService {
 	UserMapper userMapper;
 
 	/**
-	 * ¼ìÑéÓÃ»§ÃûÊÇ·ñ¿ÉÓÃ
+	 * æ£€éªŒç”¨æˆ·åæ˜¯å¦å¯ç”¨
 	 * 
 	 * @param empName
-	 * @return  true£º´ú±íµ±Ç°ĞÕÃû¿ÉÓÃ   fasle£º²»¿ÉÓÃ
+	 * @return  trueï¼šä»£è¡¨å½“å‰å§“åå¯ç”¨   fasleï¼šä¸å¯ç”¨
 	 */
 	public boolean checkUser(String userName) {
 		// TODO Auto-generated method stub
@@ -45,7 +45,7 @@ public class UserService {
 	}
 	
 	/**
-	 * ÓÃ»§±£´æ
+	 * ç”¨æˆ·ä¿å­˜
 	 * @param employee
 	 */
 	public void saveUser(User user) {

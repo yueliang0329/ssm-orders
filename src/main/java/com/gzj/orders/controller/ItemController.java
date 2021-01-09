@@ -20,7 +20,7 @@ public class ItemController {
 	@RequestMapping("/items")
 	@ResponseBody
 	public Msg getItems(){
-		//²é³öµÄËùÓĞ²¿ÃÅĞÅÏ¢
+		//æŸ¥å‡ºçš„æ‰€æœ‰éƒ¨é—¨ä¿¡æ¯
 		List<Item> list = itemService.getItems();
 		return Msg.success().add("items", list);
 	}

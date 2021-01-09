@@ -35,7 +35,7 @@ public class OrderController {
 	}
 	
 	/**
-	 * ¸ù¾İid²éÑ¯¶©µ¥
+	 * æ ¹æ®idæŸ¥è¯¢è®¢å•
 	 * @param id
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class OrderController {
 		return Msg.success().add("order", order);
 	}
 	
-	//±£´æ¶©µ¥
+	//ä¿å­˜è®¢å•
 	@ResponseBody
 	@RequestMapping(value="/order/{orderId}",method=RequestMethod.PUT)
 	public Msg saveOrder(Order order,HttpServletRequest request){
@@ -56,9 +56,9 @@ public class OrderController {
 	}
 	
 	/**
-	 * µ¥¸öÅúÁ¿¶şºÏÒ»
-	 * ÅúÁ¿É¾³ı£º1-2-3
-	 * µ¥¸öÉ¾³ı£º1
+	 * å•ä¸ªæ‰¹é‡äºŒåˆä¸€
+	 * æ‰¹é‡åˆ é™¤ï¼š1-2-3
+	 * å•ä¸ªåˆ é™¤ï¼š1
 	 * 
 	 * @param id
 	 * @return
@@ -66,11 +66,11 @@ public class OrderController {
 	@ResponseBody
 	@RequestMapping(value="/deleteOrder/{ids}",method=RequestMethod.DELETE)
 	public Msg deleteOrder(@PathVariable("ids")String ids){
-		//ÅúÁ¿É¾³ı
+		//æ‰¹é‡åˆ é™¤
 		if(ids.contains("-")){
 			List<Integer> del_ids = new ArrayList<Integer>();
 			String[] str_ids = ids.split("-");
-			//×é×°idµÄ¼¯ºÏ
+			//ç»„è£…idçš„é›†åˆ
 			for (String string : str_ids) {
 				del_ids.add(Integer.parseInt(string));
 			}

@@ -35,28 +35,28 @@ public class UserController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg login(@Valid User user,BindingResult result){
-		//System.out.println("´«ÈëÓÃ»§£º"+user.getUserName()+"--"+user.getPassword());
+		//System.out.println("ä¼ å…¥ç”¨æˆ·ï¼š"+user.getUserName()+"--"+user.getPassword());
 		if(result.hasErrors()){
-			//Ğ£ÑéÊ§°Ü£¬Ó¦¸Ã·µ»ØÊ§°Ü£¬ÔÚÄ£Ì¬¿òÖĞÏÔÊ¾Ğ£ÑéÊ§°ÜµÄ´íÎóĞÅÏ¢
+			//æ ¡éªŒå¤±è´¥ï¼Œåº”è¯¥è¿”å›å¤±è´¥ï¼Œåœ¨æ¨¡æ€æ¡†ä¸­æ˜¾ç¤ºæ ¡éªŒå¤±è´¥çš„é”™è¯¯ä¿¡æ¯
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<FieldError> errors = result.getFieldErrors();
 			for (FieldError fieldError : errors) {
-				System.out.println("´íÎóµÄ×Ö¶ÎÃû£º"+fieldError.getField());
-				System.out.println("´íÎóĞÅÏ¢£º"+fieldError.getDefaultMessage());
+				System.out.println("é”™è¯¯çš„å­—æ®µåï¼š"+fieldError.getField());
+				System.out.println("é”™è¯¯ä¿¡æ¯ï¼š"+fieldError.getDefaultMessage());
 				map.put(fieldError.getField(), fieldError.getDefaultMessage());
 			}
 			return Msg.fail().add("errorFields", map);
 		}else{
-			//Êı¾İ¿âÊÇ·ñ´æÔÚ¸ÃÓÃ»§
+			//æ•°æ®åº“æ˜¯å¦å­˜åœ¨è¯¥ç”¨æˆ·
 			boolean b = userService.checkUser(user.getUserName());
-			//System.out.println("ÊÇ·ñ²»´æÔÚ¸ÃÓÃ»§:"+b);
+			//System.out.println("æ˜¯å¦ä¸å­˜åœ¨è¯¥ç”¨æˆ·:"+b);
 			if(b!=true)
 			{
-				//´æÔÚ¸ÃÓÃ»§ÔÙ¼ì²éÃÜÂëÊÇ·ñÕıÈ·
+				//å­˜åœ¨è¯¥ç”¨æˆ·å†æ£€æŸ¥å¯†ç æ˜¯å¦æ­£ç¡®
 				boolean c=userService.checkUserPassword(user);
 				if(c)
 				{
-					return Msg.fail().add("va_msg2", "ÃÜÂë´íÎó");
+					return Msg.fail().add("va_msg2", "å¯†ç é”™è¯¯");
 				}
 				else
 				{
@@ -65,7 +65,7 @@ public class UserController {
 				
 			}
 			else {
-				return Msg.fail().add("va_msg1", "ÓÃ»§Ãû²»´æÔÚ");
+				return Msg.fail().add("va_msg1", "ç”¨æˆ·åä¸å­˜åœ¨");
 			}
 		}		
 	}
@@ -84,14 +84,14 @@ public class UserController {
 	public Msg getOrdersWithJson(
 			@RequestParam(value = "pn", defaultValue = "1") Integer pn,
 			@RequestParam(value = "userId") Integer userId) {
-		// Õâ²»ÊÇÒ»¸ö·ÖÒ³²éÑ¯
-		// ÒıÈëPageHelper·ÖÒ³²å¼ş
-		// ÔÚ²éÑ¯Ö®Ç°Ö»ĞèÒªµ÷ÓÃ£¬´«ÈëÒ³Âë£¬ÒÔ¼°Ã¿Ò³µÄ´óĞ¡
+		// è¿™ä¸æ˜¯ä¸€ä¸ªåˆ†é¡µæŸ¥è¯¢
+		// å¼•å…¥PageHelperåˆ†é¡µæ’ä»¶
+		// åœ¨æŸ¥è¯¢ä¹‹å‰åªéœ€è¦è°ƒç”¨ï¼Œä¼ å…¥é¡µç ï¼Œä»¥åŠæ¯é¡µçš„å¤§å°
 		PageHelper.startPage(pn, 5);
-		// startPageºóÃæ½ô¸úµÄÕâ¸ö²éÑ¯¾ÍÊÇÒ»¸ö·ÖÒ³²éÑ¯
+		// startPageåé¢ç´§è·Ÿçš„è¿™ä¸ªæŸ¥è¯¢å°±æ˜¯ä¸€ä¸ªåˆ†é¡µæŸ¥è¯¢
 		List<Order> orderList=orderService.selectByUser(userId);
-		// Ê¹ÓÃpageInfo°ü×°²éÑ¯ºóµÄ½á¹û£¬Ö»ĞèÒª½«pageInfo½»¸øÒ³Ãæ¾ÍĞĞÁË¡£
-		// ·â×°ÁËÏêÏ¸µÄ·ÖÒ³ĞÅÏ¢,°üÀ¨ÓĞÎÒÃÇ²éÑ¯³öÀ´µÄÊı¾İ£¬´«ÈëÁ¬ĞøÏÔÊ¾µÄÒ³Êı
+		// ä½¿ç”¨pageInfoåŒ…è£…æŸ¥è¯¢åçš„ç»“æœï¼Œåªéœ€è¦å°†pageInfoäº¤ç»™é¡µé¢å°±è¡Œäº†ã€‚
+		// å°è£…äº†è¯¦ç»†çš„åˆ†é¡µä¿¡æ¯,åŒ…æ‹¬æœ‰æˆ‘ä»¬æŸ¥è¯¢å‡ºæ¥çš„æ•°æ®ï¼Œä¼ å…¥è¿ç»­æ˜¾ç¤ºçš„é¡µæ•°
 		//System.out.println(orderList.get(1).getOrderTime());
 		PageInfo page = new PageInfo(orderList, 5);
 		return Msg.success().add("pageInfo", page);
@@ -100,33 +100,33 @@ public class UserController {
 	
 	
 	/**
-	 * ¼ì²éÓÃ»§ÃûÊÇ·ñ¿ÉÓÃ
+	 * æ£€æŸ¥ç”¨æˆ·åæ˜¯å¦å¯ç”¨
 	 * @param empName
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/checkuserName")
 	public Msg checkuser(@RequestParam("userName")String userName){
-		//ÏÈÅĞ¶ÏÓÃ»§ÃûÊÇ·ñÊÇºÏ·¨µÄ±í´ïÊ½;
+		//å…ˆåˆ¤æ–­ç”¨æˆ·åæ˜¯å¦æ˜¯åˆæ³•çš„è¡¨è¾¾å¼;
 		String regx = "(^[a-zA-Z0-9_-]{2,16}$)|(^[\u2E80-\u9FFF]{2,5})";
 		if(!userName.matches(regx)){
-			return Msg.fail().add("va_msg", "ÓÃ»§Ãû±ØĞëÊÇ6-16Î»Êı×ÖºÍ×ÖÄ¸µÄ×éºÏ»òÕß2-5Î»ÖĞÎÄ");
+			return Msg.fail().add("va_msg", "ç”¨æˆ·åå¿…é¡»æ˜¯6-16ä½æ•°å­—å’Œå­—æ¯çš„ç»„åˆæˆ–è€…2-5ä½ä¸­æ–‡");
 		}
 		
-		//Êı¾İ¿âÓÃ»§ÃûÖØ¸´Ğ£Ñé
+		//æ•°æ®åº“ç”¨æˆ·åé‡å¤æ ¡éªŒ
 		boolean b = userService.checkUser(userName);
 		if(b){
 			return Msg.success();
 		}else{
-			return Msg.fail().add("va_msg", "ÓÃ»§Ãû²»¿ÉÓÃ");
+			return Msg.fail().add("va_msg", "ç”¨æˆ·åä¸å¯ç”¨");
 		}
 	}
 	
 	
 	/**
-	 * ×¢²áÓÃ»§
-	 * 1¡¢Ö§³ÖJSR303Ğ£Ñé
-	 * 2¡¢µ¼ÈëHibernate-Validator
+	 * æ³¨å†Œç”¨æˆ·
+	 * 1ã€æ”¯æŒJSR303æ ¡éªŒ
+	 * 2ã€å¯¼å…¥Hibernate-Validator
 	 * 
 	 * 
 	 * @return
@@ -135,12 +135,12 @@ public class UserController {
 	@ResponseBody
 	public Msg saveEmp(@Valid User user,BindingResult result){
 		if(result.hasErrors()){
-			//Ğ£ÑéÊ§°Ü£¬Ó¦¸Ã·µ»ØÊ§°Ü£¬ÔÚÄ£Ì¬¿òÖĞÏÔÊ¾Ğ£ÑéÊ§°ÜµÄ´íÎóĞÅÏ¢
+			//æ ¡éªŒå¤±è´¥ï¼Œåº”è¯¥è¿”å›å¤±è´¥ï¼Œåœ¨æ¨¡æ€æ¡†ä¸­æ˜¾ç¤ºæ ¡éªŒå¤±è´¥çš„é”™è¯¯ä¿¡æ¯
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<FieldError> errors = result.getFieldErrors();
 			for (FieldError fieldError : errors) {
-				System.out.println("´íÎóµÄ×Ö¶ÎÃû£º"+fieldError.getField());
-				System.out.println("´íÎóĞÅÏ¢£º"+fieldError.getDefaultMessage());
+				System.out.println("é”™è¯¯çš„å­—æ®µåï¼š"+fieldError.getField());
+				System.out.println("é”™è¯¯ä¿¡æ¯ï¼š"+fieldError.getDefaultMessage());
 				map.put(fieldError.getField(), fieldError.getDefaultMessage());
 			}
 			return Msg.fail().add("errorFields", map);

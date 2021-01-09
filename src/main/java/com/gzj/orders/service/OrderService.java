@@ -38,7 +38,7 @@ public class OrderService {
 	}
 	
 	/**
-	 * 订单更新
+	 * 璁㈠崟鏇存柊
 	 * @param employee
 	 */
 	public void updateEmp(Order order) {
@@ -48,7 +48,7 @@ public class OrderService {
 	}
 	
 	/**
-	 * 订单删除
+	 * 璁㈠崟鍒犻櫎
 	 * @param id
 	 */
 	public void deleteOrder(Integer id) {

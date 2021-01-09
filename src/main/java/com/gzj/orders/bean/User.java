@@ -6,11 +6,11 @@ public class User {
     private Integer userId;
 
     @Pattern(regexp="(^[a-zA-Z0-9_-]{2,16}$)|(^[\u2E80-\u9FFF]{2,5})"
-    		,message="ÓÃ»§Ãû±ØĞëÊÇ2-5Î»ÖĞÎÄ»òÕß2-16Î»Ó¢ÎÄºÍÊı×ÖµÄ×éºÏ")
+    		,message="ç”¨æˆ·åå¿…é¡»æ˜¯2-5ä½ä¸­æ–‡æˆ–è€…2-16ä½è‹±æ–‡å’Œæ•°å­—çš„ç»„åˆ")
     private String userName;
 
     @Pattern(regexp="(^[a-zA-Z0-9_-]{2,16}$)|(^[\u2E80-\u9FFF]{2,5})"
-    		,message="ÃÜÂë±ØĞëÊÇ2-5Î»ÖĞÎÄ»òÕß2-16Î»Ó¢ÎÄºÍÊı×ÖµÄ×éºÏ")
+    		,message="å¯†ç å¿…é¡»æ˜¯2-5ä½ä¸­æ–‡æˆ–è€…2-16ä½è‹±æ–‡å’Œæ•°å­—çš„ç»„åˆ")
     private String password;
 
     public Integer getUserId() {
